@@ -30,10 +30,10 @@ class ErrorEvent extends BaseEvent {
   String toString() => 'ErrorEvent ${error.toString()}';
 }
 
-class FetchDataEvent extends BaseEvent {
+class RefreshDataEvent extends BaseEvent {
   final dynamic param;
 
-  FetchDataEvent({this.param});
+  RefreshDataEvent({this.param});
 
   @override
   List<dynamic> get props => [param];
@@ -49,18 +49,6 @@ class LoadMoreEvent extends BaseEvent {
   List<dynamic> get props => [param];
   @override
   String toString() => 'LoadMoreEvent';
-}
-
-class LoadConfigEvent extends BaseEvent {
-  final dynamic configs;
-
-  LoadConfigEvent(this.configs);
-
-  @override
-  List<dynamic> get props => [configs];
-
-  @override
-  String toString() => 'LoadConfigEvent ${configs.toString()}';
 }
 
 class UpdateDataEvent extends BaseEvent {

@@ -1,6 +1,6 @@
 class Assets {
   static ImageAsset images = ImageAsset();
-  static RiveAsset rives = RiveAsset();
+  static LottieAsset lotties = LottieAsset();
 }
 
 class ImageAsset {
@@ -8,9 +8,9 @@ class ImageAsset {
   var path = 'assets/images/';
 }
 
-class RiveAsset {
-  RiveAsset();
-  String path = 'assets/rives/';
+class LottieAsset {
+  LottieAsset();
+  String path = 'assets/lotties/';
 
-  String get piggy => '${path}piggy.riv';
+  String get wallet => '${path}loading/wallet.json';
 }

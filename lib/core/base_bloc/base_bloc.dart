@@ -5,7 +5,7 @@ abstract class BaseBloc extends Bloc<BaseEvent, BaseState> {
   abstract Function(dynamic data) future;
 
   BaseBloc() : super(const InitialState()) {
-    on<FetchDataEvent>((event, emit) {
+    on<InitDataEvent>((event, emit) {
       emit(LoadingState());
       future(event.param);
       emit(const DataLoadedState());
