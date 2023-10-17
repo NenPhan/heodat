@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:heodat/core/utils/classes/app_color.dart';
 import 'package:heodat/core/utils/classes/heo_color.dart';
 
 class ThemeCubit extends Cubit<ThemeMode> {
@@ -28,8 +29,8 @@ TextTheme textTheme(context) => Theme.of(context).textTheme;
 ThemeData theme(context) => Theme.of(context);
 
 class HeoThemes {
-  static final darkTheme = ThemeData(
-    primarySwatch: getMaterialColor(HeoColor.mainColorList[0]),
+  static final darkTheme = ThemeData.dark().copyWith(
+    // primarySwatch: getMaterialColor(HeoColor.mainColorList[0]),
     primaryColor: HeoColor.mainColor,
     scaffoldBackgroundColor: HeoColor.bgr1Dark,
     cardColor: HeoColor.bgr2Dark,
@@ -64,10 +65,11 @@ class HeoThemes {
         color: Colors.white,
       ),
     ),
+    extensions: [AppColors(splashBgr: HeoColor.bgr1Dark)],
   );
 
-  static final lightTheme = ThemeData(
-    primarySwatch: getMaterialColor(HeoColor.mainColor),
+  static final lightTheme = ThemeData.light().copyWith(
+    // primarySwatch: getMaterialColor(HeoColor.mainColor),
     primaryColor: HeoColor.mainColor,
     scaffoldBackgroundColor: HeoColor.bgr1,
     cardColor: HeoColor.bgr2,
@@ -101,5 +103,6 @@ class HeoThemes {
         color: HeoColor.mainColor,
       ),
     ),
+    extensions: [AppColors(splashBgr: HeoColor.mainColorList[3])],
   );
 }
