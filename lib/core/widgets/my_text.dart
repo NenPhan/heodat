@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:heodat/core/utils/classes/heo_color.dart';
+import 'package:heodat/core/config/my_theme.dart';
 
-class HeoText extends StatelessWidget {
-  const HeoText(this.text, {super.key, this.style});
+class MyText extends StatelessWidget {
+  const MyText(this.text, {super.key, this.style});
   final String text;
   final TextStyle? style;
 
@@ -13,7 +13,7 @@ class HeoText extends StatelessWidget {
       style: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w500,
-        color: HeoColor.textDark,
+        color: textTheme(context).bodyMedium?.color,
       ).copyWith(
         fontSize: style?.fontSize,
         fontWeight: style?.fontWeight,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:heodat/core/config/heo_theme.dart';
+import 'package:heodat/core/config/my_theme.dart';
 
 class ThemeSwitchButton extends StatefulWidget {
   const ThemeSwitchButton({super.key, this.size = 35});

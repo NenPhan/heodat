@@ -6,7 +6,8 @@ import 'package:heodat/core/utils/classes/heo_color.dart';
 
 class ThemeCubit extends Cubit<ThemeMode> {
   final bool systemDark;
-  ThemeCubit(this.systemDark) : super(systemDark ? ThemeMode.dark : ThemeMode.light) {
+  ThemeCubit(this.systemDark)
+      : super(systemDark ? ThemeMode.dark : ThemeMode.light) {
     updateStatusBarTheme();
   }
 
@@ -17,10 +18,14 @@ class ThemeCubit extends Cubit<ThemeMode> {
 
   updateStatusBarTheme() {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: state == ThemeMode.dark ? HeoColor.mainColor : HeoColor.bgr1,
-      statusBarIconBrightness: state == ThemeMode.dark ? Brightness.light : Brightness.dark,
-      systemNavigationBarColor: state == ThemeMode.dark ? HeoColor.mainColor : HeoColor.bgr1,
-      systemNavigationBarIconBrightness: state == ThemeMode.dark ? Brightness.light : Brightness.dark,
+      statusBarColor:
+          state == ThemeMode.dark ? MyColor.mainColor : MyColor.bgr1,
+      statusBarIconBrightness:
+          state == ThemeMode.dark ? Brightness.light : Brightness.dark,
+      systemNavigationBarColor:
+          state == ThemeMode.dark ? MyColor.mainColor : MyColor.bgr1,
+      systemNavigationBarIconBrightness:
+          state == ThemeMode.dark ? Brightness.light : Brightness.dark,
     ));
   }
 }
@@ -28,15 +33,16 @@ class ThemeCubit extends Cubit<ThemeMode> {
 TextTheme textTheme(context) => Theme.of(context).textTheme;
 ThemeData theme(context) => Theme.of(context);
 
-class HeoThemes {
+class MyThemes {
   static final darkTheme = ThemeData.dark().copyWith(
     // primarySwatch: getMaterialColor(HeoColor.mainColorList[0]),
-    primaryColor: HeoColor.mainColor,
-    scaffoldBackgroundColor: HeoColor.bgr1Dark,
-    cardColor: HeoColor.bgr2Dark,
+    primaryColor: MyColor.mainColor,
+    scaffoldBackgroundColor: MyColor.bgr1Dark,
+    cardColor: MyColor.bgr2Dark,
     appBarTheme: AppBarTheme(
-      systemOverlayStyle:
-          SystemUiOverlayStyle(statusBarColor: HeoColor.mainColorList[0], statusBarIconBrightness: Brightness.light),
+      systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: MyColor.mainColorList[0],
+          statusBarIconBrightness: Brightness.light),
     ),
     textTheme: const TextTheme(
       bodySmall: TextStyle(
@@ -65,44 +71,46 @@ class HeoThemes {
         color: Colors.white,
       ),
     ),
-    extensions: [AppColors(splashBgr: HeoColor.bgr1Dark)],
+    extensions: [AppColors(splashBgr: MyColor.bgr1Dark)],
   );
 
   static final lightTheme = ThemeData.light().copyWith(
     // primarySwatch: getMaterialColor(HeoColor.mainColor),
-    primaryColor: HeoColor.mainColor,
-    scaffoldBackgroundColor: HeoColor.bgr1,
-    cardColor: HeoColor.bgr2,
+    primaryColor: MyColor.mainColor,
+    scaffoldBackgroundColor: MyColor.bgr1,
+    cardColor: MyColor.bgr2,
     appBarTheme: AppBarTheme(
-      systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: HeoColor.bgr1, statusBarIconBrightness: Brightness.dark),
+      systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: MyColor.bgr1,
+          statusBarIconBrightness: Brightness.dark),
     ),
     textTheme: TextTheme(
       bodySmall: TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.w600,
-        color: HeoColor.mainColor,
+        color: MyColor.mainColor,
       ),
       bodyMedium: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w600,
-        color: HeoColor.mainColor,
+        color: MyColor.mainColor,
       ),
       bodyLarge: TextStyle(
         fontSize: 17,
         fontWeight: FontWeight.w600,
-        color: HeoColor.mainColor,
+        color: MyColor.mainColor,
       ),
       titleMedium: TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.w600,
-        color: HeoColor.mainColor,
+        color: MyColor.mainColor,
       ),
       titleLarge: TextStyle(
         fontSize: 25,
         fontWeight: FontWeight.w600,
-        color: HeoColor.mainColor,
+        color: MyColor.mainColor,
       ),
     ),
-    extensions: [AppColors(splashBgr: HeoColor.mainColorList[3])],
+    extensions: [AppColors(splashBgr: MyColor.mainColorList[3])],
   );
 }

@@ -1,7 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:heodat/core/config/heo_theme.dart';
+import 'package:heodat/app_config.dart';
+import 'package:heodat/core/config/my_theme.dart';
+import 'package:heodat/core/config/my_navigator_observer.dart';
 import 'package:heodat/core/utils/functions.dart';
 import 'package:heodat/src/app/features/splash/splash_page.dart';
 import 'package:heodat/src/router/app_pages.dart';
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
     ]);
     var brightness = MediaQuery.of(context).platformBrightness;
     bool systemDarkMode = brightness == Brightness.dark;
-
+    compute((message) {}, '');
     return GestureDetector(
       onTap: () {
         disableFocus(context);
@@ -34,14 +37,15 @@ class MyApp extends StatelessWidget {
         child: BlocBuilder<ThemeCubit, ThemeMode>(
           builder: (context, state) {
             return MaterialApp(
+              navigatorKey: AppConfig.globalKey,
               title: 'HeoDat',
-              // initialBinding: AuthBinding(),
-              initialRoute: const SplashPage().route,
+              initialRoute: SplashPage.route,
               debugShowCheckedModeBanner: false,
-              routes: appRoutes,
-              theme: HeoThemes.lightTheme,
-              darkTheme: HeoThemes.darkTheme,
+              onGenerateRoute: AppRoute.onGenerateRoute,
+              theme: MyThemes.lightTheme,
+              darkTheme: MyThemes.darkTheme,
               themeMode: state,
+              navigatorObservers: [AppNavObserver()],
             );
           },
         ),

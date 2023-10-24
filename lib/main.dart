@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:heodat/core/config/app.dart';
-import 'package:heodat/core/config/app_config.dart';
+import 'package:heodat/app.dart';
+import 'package:heodat/app_config.dart';
 import 'package:heodat/core/utils/enums.dart';
 
 void main() async {

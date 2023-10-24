@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class HeoColor {
+class MyColor {
   static Color fromHex(int hex) => Color(hex);
   static get mainColor => const Color(0xff291b12);
   static get mainColorList => [

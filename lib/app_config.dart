@@ -2,6 +2,7 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:heodat/core/config/my_navigator_observer.dart';
 import 'package:heodat/core/utils/enums.dart';
 
 class AppConfig extends InheritedWidget {
@@ -21,7 +22,8 @@ class AppConfig extends InheritedWidget {
       if (isDevelopment) {
         FlutterError.dumpErrorToConsole(details);
       } else {
-        Zone.current.handleUncaughtError(details.exception, details.stack ?? StackTrace.fromString("stackTraceString"));
+        Zone.current.handleUncaughtError(details.exception,
+            details.stack ?? StackTrace.fromString("stackTraceString"));
       }
     };
   }
@@ -34,13 +36,21 @@ class AppConfig extends InheritedWidget {
   final String resourceIcon;
   final String socket;
   final bool logResponse;
+
   OverlayEntry overlayEntry = OverlayEntry(
     builder: (context) => const SizedBox(),
   );
 
-  bool get isDevelopment => flavorName == AppFlavor.DEVELOPMENT || flavorName == AppFlavor.STAGING_DEV;
+  static final globalKey = GlobalKey<NavigatorState>();
 
-  static AppConfig? instance(BuildContext context) => context.dependOnInheritedWidgetOfExactType(aspect: AppConfig);
+  static String get currentRoute => AppNavObserver.currentRoute;
+
+  bool get isDevelopment =>
+      flavorName == AppFlavor.DEVELOPMENT ||
+      flavorName == AppFlavor.STAGING_DEV;
+
+  static AppConfig? get instance => globalKey.currentContext
+      ?.dependOnInheritedWidgetOfExactType(aspect: AppConfig);
 
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) => false;

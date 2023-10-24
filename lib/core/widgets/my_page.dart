@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:heodat/core/widgets/sz.dart';
 import 'package:heodat/src/app/widgets/loading_page.dart';
 
-abstract class HeoSlPage extends StatelessWidget {
-  const HeoSlPage({super.key});
+abstract class MySlPage extends StatelessWidget {
+  const MySlPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +17,12 @@ abstract class HeoSlPage extends StatelessWidget {
 
   initPage(BuildContext context) {}
 
-  String get route => '/';
+  static const String route = '/';
 }
 
 abstract class HeoSfPage extends StatefulWidget {
   const HeoSfPage({super.key});
+  static const String route = '/';
 }
 
 abstract class HeoSfPageState<Page extends HeoSfPage> extends State<HeoSfPage> {
