@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:heodat/core/base_bloc/base.dart';
 import 'package:heodat/core/config/my_theme.dart';
 import 'package:heodat/core/widgets/my_page.dart';
 import 'package:heodat/core/widgets/my_text.dart';
-import 'package:heodat/core/widgets/sz.dart';
 import 'package:heodat/src/app/widgets/dark_mode_button.dart';
 import 'package:heodat/src/app/widgets/loading_page.dart';
 import 'package:heodat/src/app/widgets/pie_progress_bar.dart';
+import 'package:heodat/src/app/widgets/smooth_scroll.dart';
 import 'package:heodat/src/app/widgets/spacing_widget.dart';
 
 import '../blocs/home_page_bloc.dart';
@@ -22,6 +23,7 @@ class HomePage extends HeoSfPage {
 
 class _HomePageState extends HeoSfPageState<HomePage> {
   HomePageBloc bloc = HomePageBloc();
+  ScrollController scrollController = ScrollController();
 
   @override
   Widget body(BuildContext context) {
@@ -29,11 +31,12 @@ class _HomePageState extends HeoSfPageState<HomePage> {
         bloc: bloc,
         builder: (context, state) {
           return state is DataLoadedState
-              ? SingleChildScrollView(
+              ? SmoothScroll(
+                  scrollController: scrollController,
                   child: Padding(
-                    padding: EdgeInsets.all(scrSize(context).width * 0.05),
+                    padding: EdgeInsets.all(0.05.sw),
                     child: SpacingColumn(
-                      spacing: scrSize(context).height * 0.02,
+                      spacing: 0.02.sh,
                       children: [
                         Row(
                           children: [
@@ -98,7 +101,7 @@ class _HomePageState extends HeoSfPageState<HomePage> {
                         Wrap(
                           spacing: 10,
                           runSpacing: 10,
-                          children: List.generate(6, (index) {
+                          children: List.generate(12, (index) {
                             return LayoutBuilder(builder: (context, cons) {
                               return Container(
                                   width: cons.maxWidth / 2 - 10,
@@ -110,17 +113,28 @@ class _HomePageState extends HeoSfPageState<HomePage> {
                                     spacing: 10,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    children: const [
-                                      PieProgressBar(progress: 80),
-                                      Row(
+                                    children: [
+                                      PieProgressBar(
+                                        size: 70.sp,
+                                        progress: 60,
+                                      ),
+                                      const Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          MyText('Abc'),
-                                          MyText('Abc'),
+                                          MyText(
+                                            'Car',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          MyText(
+                                            '60%',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600),
+                                          ),
                                         ],
                                       ),
-                                      MyText('Abc'),
+                                      const MyText('100000 VND'),
                                     ],
                                   ));
                             });

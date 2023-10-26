@@ -6,3 +6,12 @@ disableFocus(BuildContext context) async {
     AppConfig.instance?.overlayEntry.remove();
   }
 }
+
+delay(Duration duration, [VoidCallback? then]) async {
+  await Future.delayed(
+    duration,
+    () {
+      then?.call();
+    },
+  );
+}

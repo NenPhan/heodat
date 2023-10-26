@@ -16,7 +16,12 @@ class DBManagement {
 
   static Future getFunds(String roomId) async {
     var res = [];
-    await firestore.collection('room').doc(roomId).collection('funds').get().then((value) {
+    await firestore
+        .collection('room')
+        .doc(roomId)
+        .collection('funds')
+        .get()
+        .then((value) {
       for (var e in value.docs) {
         res.add((e.data()));
       }
@@ -26,7 +31,12 @@ class DBManagement {
 
   static Future createFund(String roomId) async {
     var res = [];
-    await firestore.collection('room').doc(roomId).collection('funds').get().then((value) {
+    await firestore
+        .collection('room')
+        .doc(roomId)
+        .collection('funds')
+        .get()
+        .then((value) {
       for (var e in value.docs) {
         res.add((e.data()));
       }
