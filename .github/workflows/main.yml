@@ -3,7 +3,7 @@ name: Flutter
 on:
   push:
     tags:
-        - 'release-*'
+        - '*'
 
 jobs:
   build:

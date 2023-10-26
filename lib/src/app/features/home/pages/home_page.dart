@@ -44,7 +44,7 @@ class _HomePageState extends HeoSfPageState<HomePage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Welcome, v1.4',
+                                  'Welcome, v1.5',
                                   style: textTheme(context)
                                       .titleLarge
                                       ?.copyWith(fontWeight: FontWeight.w700),
