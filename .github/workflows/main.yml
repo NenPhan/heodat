@@ -1,8 +1,9 @@
 name: Flutter
 
 on:
-  tags:
-      - 'release-*'
+  push:
+    tags:
+        - 'release-*'
 
 jobs:
   build:
