@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:heodat/core/base_bloc/base.dart';
 import 'package:heodat/core/config/my_theme.dart';
 import 'package:heodat/core/widgets/my_page.dart';
 import 'package:heodat/core/widgets/my_text.dart';
-import 'package:heodat/core/widgets/sz.dart';
 import 'package:heodat/src/app/widgets/dark_mode_button.dart';
 import 'package:heodat/src/app/widgets/loading_page.dart';
 import 'package:heodat/src/app/widgets/pie_progress_bar.dart';
+import 'package:heodat/src/app/widgets/rounded_container.dart';
 import 'package:heodat/src/app/widgets/spacing_widget.dart';
 
 import '../blocs/home_page_bloc.dart';
@@ -22,6 +23,7 @@ class HomePage extends HeoSfPage {
 
 class _HomePageState extends HeoSfPageState<HomePage> {
   HomePageBloc bloc = HomePageBloc();
+  ScrollController scrollController = ScrollController();
 
   @override
   Widget body(BuildContext context) {
@@ -30,10 +32,11 @@ class _HomePageState extends HeoSfPageState<HomePage> {
         builder: (context, state) {
           return state is DataLoadedState
               ? SingleChildScrollView(
+                  controller: scrollController,
                   child: Padding(
-                    padding: EdgeInsets.all(scrSize(context).width * 0.05),
+                    padding: EdgeInsets.all(0.05.sw),
                     child: SpacingColumn(
-                      spacing: scrSize(context).height * 0.02,
+                      spacing: 0.02.sh,
                       children: [
                         Row(
                           children: [
@@ -75,33 +78,51 @@ class _HomePageState extends HeoSfPageState<HomePage> {
                               children: [
                                 Expanded(
                                   child: Container(
-                                    height: 90,
+                                    padding: const EdgeInsets.all(20),
                                     color: theme(context).cardColor,
+                                    child: Row(children: [
+                                      SpacingColumn(
+                                        spacing: 10,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Opacity(
+                                              opacity: .8,
+                                              child: MyText(
+                                                'BALANCE',
+                                                style: textTheme(context)
+                                                    .bodySmall,
+                                              )),
+                                          const MyText(
+                                            '\$ 999999999999',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
+                                      ),
+                                      const Spacer(),
+                                      IconButton(
+                                        icon: const Icon(Icons.tune_rounded),
+                                        onPressed: () {},
+                                      )
+                                    ]),
                                   ),
                                 ),
                               ],
                             )
                           ]),
                         ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                height: 70,
-                                decoration: BoxDecoration(
-                                    color: theme(context).cardColor,
-                                    borderRadius: BorderRadius.circular(20)),
-                              ),
-                            ),
-                          ],
+                        RoundedContainer(
+                          height: 70,
+                          width: 1.sw,
                         ),
                         Wrap(
                           spacing: 10,
                           runSpacing: 10,
-                          children: List.generate(6, (index) {
+                          children: List.generate(12, (index) {
                             return LayoutBuilder(builder: (context, cons) {
                               return Container(
-                                  width: cons.maxWidth / 2 - 10,
+                                  width: (cons.maxWidth - 10) / 2,
                                   decoration: BoxDecoration(
                                       color: theme(context).cardColor,
                                       borderRadius: BorderRadius.circular(20)),
@@ -110,17 +131,28 @@ class _HomePageState extends HeoSfPageState<HomePage> {
                                     spacing: 10,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    children: const [
-                                      PieProgressBar(progress: 80),
-                                      Row(
+                                    children: [
+                                      PieProgressBar(
+                                        size: 70.sp,
+                                        progress: 60,
+                                      ),
+                                      const Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          MyText('Abc'),
-                                          MyText('Abc'),
+                                          MyText(
+                                            'Car',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          MyText(
+                                            '60%',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600),
+                                          ),
                                         ],
                                       ),
-                                      MyText('Abc'),
+                                      const MyText('100000 VND'),
                                     ],
                                   ));
                             });

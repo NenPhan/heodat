@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:heodat/core/config/my_theme.dart';
 import 'package:heodat/core/utils/extensions/int_extensions.dart';
 import 'package:vector_math/vector_math.dart' as vm;
 
 class PieProgressBar extends StatefulWidget {
+  /// Creates a rounded pie progress bar
   const PieProgressBar(
       {super.key, this.size = 50, this.color = Colors.blue, this.progress = 0});
+
+  ///Size of widget
   final double size;
+
+  //Color of widget
   final Color color;
+
+  ///Between 0 to 100
   final int progress;
   @override
   State<PieProgressBar> createState() => _PieProgressBarState();
@@ -20,6 +28,9 @@ class _PieProgressBarState extends State<PieProgressBar>
 
   @override
   void initState() {
+    if (widget.progress < 0 || widget.progress > 100) {
+      throw Exception('Progress must be between 0 to 100');
+    }
     setAnimation(0, widget.progress);
     super.initState();
   }
@@ -49,15 +60,18 @@ class _PieProgressBarState extends State<PieProgressBar>
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(1.5),
+      padding: const EdgeInsets.all(3),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(widget.size * 0.18),
-          border: Border.all(color: Colors.black)),
+        borderRadius: BorderRadius.circular(widget.size * 0.3),
+        border: Border.all(
+            color: theme(context).textTheme.bodyMedium?.color ?? Colors.black,
+            width: 2),
+      ),
       child: Stack(
         alignment: Alignment.center,
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(widget.size * 0.15),
+            borderRadius: BorderRadius.circular(widget.size * 0.245),
             child: SizedBox(
               width: widget.size,
               height: widget.size,

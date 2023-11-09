@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 class AppNavObserver extends NavigatorObserver {
@@ -19,6 +21,7 @@ class AppNavObserver extends NavigatorObserver {
   }
 
   void _setCurrentRoute(Route<dynamic> route) {
+    log('current route => ${route.settings.name ?? ''}');
     if (route.settings.name != null) {
       _currentRoute = route.settings.name!;
     }

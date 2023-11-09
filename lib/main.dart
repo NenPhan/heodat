@@ -1,11 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:heodat/app.dart';
 import 'package:heodat/app_config.dart';
 import 'package:heodat/core/utils/enums.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await ScreenUtil.ensureScreenSize();
   await Firebase.initializeApp(
       options: const FirebaseOptions(
     apiKey: 'AIzaSyDNjDPjFdJCWG55twiWj_gKtha22V0skFU',
@@ -15,13 +17,13 @@ void main() async {
   ));
   runApp(
     AppConfig(
-      socket: 'https://evinote-api.gonosen.work/',
-      resource: 'https://evinote-api.gonosen.work/files/',
-      resourceIcon: 'https://evinote-admin.gonosen.work/storage/',
-      appName: 'Evinote Development',
+      appName: 'Heo dat',
       flavorName: AppFlavor.DEVELOPMENT,
-      apiUrl: 'https://evinote-api.gonosen.work',
-      host: 'https://evinote.gonosen.work',
+      socket: '',
+      resource: '',
+      resourceIcon: '',
+      apiUrl: '',
+      host: '',
       logResponse: false,
       child: const MyApp(),
     ),

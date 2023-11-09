@@ -10,16 +10,12 @@ class MyText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.w500,
-        color: textTheme(context).bodyMedium?.color,
-      ).copyWith(
-        fontSize: style?.fontSize,
-        fontWeight: style?.fontWeight,
-        height: style?.height,
-        color: style?.color,
-      ),
+      style: textTheme(context).bodyMedium?.copyWith(
+            fontSize: style?.fontSize,
+            fontWeight: style?.fontWeight,
+            height: style?.height,
+            color: style?.color,
+          ),
     );
   }
 }
